@@ -15,5 +15,3 @@ Once you have Java installed, you can compile and run the code using a Java deve
 4. Run the code by typing "java Client" and pressing Enter.
 
 The program should now run and display the Tic-Tac-Toe game board.
-# Tic-Tac-Toe
-# Tic-Tac-Toe
