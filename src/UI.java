@@ -11,7 +11,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 
 /**
- * The View class represents the user interface for the Tic-Tac-Toe game. It
+ * The UI class represents the user interface for the Tic-Tac-Toe game. It
  * provides methods for building and updating
  * the graphical interface, including the game board, status and statistics
  * labels, menu bar items, and button enablement.
@@ -23,7 +23,7 @@ import java.awt.GridLayout;
  * @version April 2, 2023
  */
 
-public class View {
+public class UI {
 
     // propertis of the game; dimensions; stat spacings; game name
     public static int WIDTH = 500;
@@ -56,12 +56,12 @@ public class View {
     public static ImageIcon O_ICON = new ImageIcon("images/O.png");
 
     /**
-     * The View constructor method for constructing the View.
+     * The UI constructor method for constructing the UI.
      * Build the main Frame and the panels and buttons. This will essentially build
      * everything
      * that is visible in the UI.
      */
-    public View() {
+    public UI() {
 
         frame = new JFrame(GAME_NAME);
 
@@ -80,7 +80,7 @@ public class View {
         buildStatusLabel();
         buildStatsLabel();
         // build board
-        System.out.println("View.java compiled");
+        System.out.println("UI.java compiled");
     }
 
     /**
@@ -90,7 +90,7 @@ public class View {
      */
     public void buildStatusLabel() {
         gameStatus = new JLabel();
-        gameStatus.setText(" Game Starting: " + Model.DEFAULT_PLAYER + "'s turn");
+        gameStatus.setText(" Game Starting: " + GameLogic.DEFAULT_PLAYER + "'s turn");
         // place it at the bottom of the frame
         frame.add(gameStatus, BorderLayout.SOUTH);
     }

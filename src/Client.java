@@ -5,7 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JMenuItem;
 
 /**
- * The Controller class acts as a mediator between the View and Model classes in
+ * The Client class acts as a mediator between the UI and GameLogic classes in
  * a Tic-Tac-Toe game.
  * It listens for user actions, such as button clicks and menu selections, and
  * updates the game's state accordingly.
@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
  * The class sets up and initializes the game board and menu items, and
  * implements the ActionListener interface to handle
  * user interactions. When a button is clicked, the corresponding coordinates
- * are passed to the Model class to place an X or O
+ * are passed to the GameLogic class to place an X or O
  * on the board.
  * 
  * The class also checks for game ending conditions and updates the UI
@@ -29,11 +29,11 @@ import javax.swing.JMenuItem;
  * @version April 2, 2023
  */
 
-public class Controller implements ActionListener {
+public class Client implements ActionListener {
 
     // main calling stuff for now
     public static void main(String[] args) {
-        Controller controller = new Controller(new View(), new Model());
+        Client client = new Client(new UI(), new GameLogic());
         System.out.println("up and running...");
     }
 
@@ -44,16 +44,16 @@ public class Controller implements ActionListener {
     private JMenuItem[] menuItems; // menu items
 
     // the View class instance for communication
-    private View view;
+    private UI view;
 
-    // the Model class instance for communication
-    private Model model;
+    // the GameLogic class instance for communication
+    private GameLogic model;
 
     /**
-     * The Controller constructor method for constructing the MVC framework.
+     * The Client constructor method for constructing the framework.
      * Initalize the game and set up the board.
      */
-    public Controller(View view, Model model) {
+    public Client(UI view, GameLogic model) {
 
         this.view = view;
         this.model = model;
@@ -65,7 +65,7 @@ public class Controller implements ActionListener {
         setMenuItemListener();
         model.clearBoard();
 
-        System.out.println("Controller.java compiled");
+        System.out.println("Client.java compiled");
     }
 
     /**
@@ -128,8 +128,8 @@ public class Controller implements ActionListener {
                     view.updateStatus(" Game over: " + model.getWinner() + " won!");
 
                 // since the game ended, update the statistics of the game.
-                view.updateStatistics(" Statistics:" + View.STATS_SPACING + "X Wins: " + model.getPlrXWins()
-                        + View.STATS_SPACING + "O Wins: " + model.getPlrOWins() + View.STATS_SPACING + "Ties: "
+                view.updateStatistics(" Statistics:" + UI.STATS_SPACING + "X Wins: " + model.getPlrXWins()
+                        + UI.STATS_SPACING + "O Wins: " + model.getPlrOWins() + UI.STATS_SPACING + "Ties: "
                         + model.getPlrTies());
             }
 
@@ -143,17 +143,17 @@ public class Controller implements ActionListener {
                 // turn the buttons on again in case they are off
                 view.buttonEnable(true);
                 // update the status of the game and statistics
-                view.updateStatus(" Game Starting: " + Model.DEFAULT_PLAYER + "'s turn");
-                view.updateStatistics(" Statistics:" + View.STATS_SPACING + "X Wins: " + model.getPlrXWins()
-                        + View.STATS_SPACING + "O Wins: " + model.getPlrOWins() + View.STATS_SPACING + "Ties: "
+                view.updateStatus(" Game Starting: " + GameLogic.DEFAULT_PLAYER + "'s turn");
+                view.updateStatistics(" Statistics:" + UI.STATS_SPACING + "X Wins: " + model.getPlrXWins()
+                        + UI.STATS_SPACING + "O Wins: " + model.getPlrOWins() + UI.STATS_SPACING + "Ties: "
                         + model.getPlrTies());
             } else if (event.getSource() == menuItems[1]) { // swap 1st player
                 model.swapPlayer();
             } else if (event.getSource() == menuItems[2]) { // reset stats
                 // reset game stats and update JLabel
                 model.resetStats();
-                view.updateStatistics(" Statistics:" + View.STATS_SPACING + "X Wins: " + model.getPlrXWins()
-                        + View.STATS_SPACING + "O Wins: " + model.getPlrOWins() + View.STATS_SPACING + "Ties: "
+                view.updateStatistics(" Statistics:" + UI.STATS_SPACING + "X Wins: " + model.getPlrXWins()
+                        + UI.STATS_SPACING + "O Wins: " + model.getPlrOWins() + UI.STATS_SPACING + "Ties: "
                         + model.getPlrTies());
             } else if (event.getSource() == menuItems[3]) { // quit
                 // kill the ui and free the memory

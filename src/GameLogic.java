@@ -3,7 +3,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * The Model class represents the state and behavior of a Tic Tac Toe game.
+ * The GameLogic class represents the state and behavior of a Tic Tac Toe game.
  * It keeps track of the game board, the current player, and the game statistics
  * (number of wins and ties for each player).
  * 
@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  * @version April 2, 2023
  */
 
-public class Model {
+public class GameLogic {
 
     public static final String PLAYER_X = "X"; // player using "X"
     public static final String PLAYER_O = "O"; // player using "O"
@@ -48,15 +48,15 @@ public class Model {
     private JButton[][] board;
 
     /**
-     * The Model constructor method for constructing the Model.
+     * The GameLogic constructor method for constructing the GameLogic.
      * Reset all stats to default values and other settings.
      */
-    public Model() {
+    public GameLogic() {
         this.gameEnded = false;
         this.plrXWins = 0;
         this.plrOWins = 0;
         this.plrTie = 0;
-        System.out.println("Model.java compiled");
+        System.out.println("GameLogic.java compiled");
     }
 
     /**
@@ -164,11 +164,11 @@ public class Model {
             button.setText(player);
             // set the image on the board
             if (player.equals(PLAYER_X)) {
-                ImageIcon resizedIcon = new ImageIcon(View.X_ICON.getImage().getScaledInstance(button.getWidth(),
+                ImageIcon resizedIcon = new ImageIcon(UI.X_ICON.getImage().getScaledInstance(button.getWidth(),
                         button.getHeight(), Image.SCALE_SMOOTH));
                 button.setIcon(resizedIcon);
             } else {
-                ImageIcon resizedIcon = new ImageIcon(View.O_ICON.getImage().getScaledInstance(button.getWidth(),
+                ImageIcon resizedIcon = new ImageIcon(UI.O_ICON.getImage().getScaledInstance(button.getWidth(),
                         button.getHeight(), Image.SCALE_SMOOTH));
                 button.setIcon(resizedIcon);
             }
@@ -227,7 +227,7 @@ public class Model {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j].setText(EMPTY);
-                board[i][j].setIcon(View.BLANK_ICON);
+                board[i][j].setIcon(UI.BLANK_ICON);
             }
         }
         winner = EMPTY;
